@@ -12,10 +12,26 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\Controller\TraceableControllerResolver;
 use Symfony\Component\Routing\Route;
 
 class MigrateRoutesCommand extends ContainerAwareCommand
 {
+	/**
+	 * @var ControllerResolver
+	 */
+	private $controllerResolver;
+
+	/**
+	 * @param ControllerResolver $controllerResolver
+	 */
+	public function __construct(ControllerResolver $controllerResolver)
+	{
+		$this->controllerResolver = $controllerResolver;
+
+		parent::__construct();
+	}
+
     /**
      * {@inheritdoc}
      * php bin/console stoakes:convert_yml ./src/Mgate/DashboardBundle/Resources/config/routing.yml /suivi
