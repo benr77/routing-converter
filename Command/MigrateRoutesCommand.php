@@ -55,7 +55,7 @@ class MigrateRoutesCommand extends ContainerAwareCommand
         $routes = $loader->load($input->getArgument('resource'));
 
         foreach ($routes->all() as $name => $route) {
-            $string = ' * @Route(name="' . $name . '", path="' . $input->getArgument('prefix') . '' . $route->getPath() . '"';
+            $string = '    * @Route(name="' . $name . '", path="' . $input->getArgument('prefix') . '' . $route->getPath() . '"';
 
             $string = $this->methodsHandler($route, $string);
             $string = $this->requirementsHandler($route, $string);
